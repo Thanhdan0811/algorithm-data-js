@@ -7,6 +7,17 @@
 
   fatorial of zero is 1;
   factorial(4) = 4 * 3 * 2 * 1 = 24
+  factorial(3) = 3 * 2 * 1 = 6
+  factorial(3) = 2 * 1 = 2
+
+  n * (n-1) 
+  
+  
+  n^2 - n = 2
+  n^3 -4n^2 + 2n = 6
+  n^4 -6n^3 + 11n^2 - 6n = 24
+
+
   factorial(5) = 5 * 4 * 3 * 2 * 1 = 120
 
   BIG-O is O(n)

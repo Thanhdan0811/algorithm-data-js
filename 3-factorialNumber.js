@@ -3,7 +3,7 @@
   
   In Mathematics , the factorial of non-negative integer 'n' , denoted n! , is the product of all positive integers less than or equal to 'n'.
   
-  EX :
+  EX : 
 
   fatorial of zero is 1;
   factorial(4) = 4 * 3 * 2 * 1 = 24

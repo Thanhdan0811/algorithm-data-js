@@ -22,4 +22,16 @@ function insertionSort(arr) {
     return arr;
 }
 
-console.log(insertionSort([2,1,9,7,67,4]))
+console.log(insertionSort([2, 1, 9, 7, 67, 4]))
+
+/* 
+    [2, 1, 9, 7, 67, 4]
+    current = 1 ; i = 1;
+    j = 0, i = 1, 2 > 1, arr[j + 1] = arr[j] <=> [2, 2,8,7,67,4],
+    j-- <=> j = -1, a[j + 1] = 1 => arr = [1,2,8,7,67,4]
+
+
+    
+
+
+*/

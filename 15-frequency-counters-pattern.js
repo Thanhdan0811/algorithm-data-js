@@ -44,9 +44,11 @@ let sameArr_2 = (arr1, arr2) => {
     let frequencyCounters2 = {};
 
     for (let val of arr1) {
+        if (!(val instanceof Number)) return false;
         frequencyCounters1[val] = (frequencyCounters1[val] || 0) + 1;
     }
     for (let val of arr2) {
+        if (!(val instanceof Number)) return false;
         frequencyCounters2[val] = (frequencyCounters2[val] || 0) + 1;
     }
 
@@ -54,7 +56,7 @@ let sameArr_2 = (arr1, arr2) => {
         // mũ 2 nhưng ko tồn tại trong frequencyCounters2
         if (!(key ** 2 in frequencyCounters2)) return false;
         // số lượng mũ 2 trong frequencyCounters2 khác số lượng trong frequencyCounters1
-        if (frequencyCounters2[key ** 2] !== frequencyCounters1[key]) return false;
+        if (frequencyCounters1[key] !== frequencyCounters2[key ** 2]) return false;
     }
 
     return true;

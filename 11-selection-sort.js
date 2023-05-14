@@ -31,3 +31,21 @@ function selectionSort(arr) {
 }
 
 console.log(selectionSort([334, 22, 10, 19, 17, 4]));
+
+
+for (let i = 0; i < arr.length; i++) {
+    let minimum = arr[i];
+
+    for (let j = i + 1; j < arr.length; j++) {
+        if (arr[j] < minimum) {
+            minimum = arr[j];
+        }
+    }
+
+    // if (minimum == i) continue;
+    let temp = minimum;
+    minimum = arr[i];
+    arr[i] = temp;
+
+}
+

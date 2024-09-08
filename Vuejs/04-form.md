@@ -1,0 +1,1 @@
+- dùng `v-model` để two-way-binding cho input.

@@ -1,0 +1,5 @@
+- cài mongodb : npm i mongodb
+- Tạo file : database.service.ts trong folder services.
+- Tạo file .env trong folder chính để lưu các value về DB.
+- cái thêm thư viện : dotenv : npm i dotenv
+- thư viện dotenv giúp truy cập được biến khai báo trong file .env từ process.env của nodejs.

@@ -1,0 +1,3 @@
+- Tham chiếu đến static method : Class::staticMethod
+- Thm chiếu đến 1 instance method của 1 đối tượng cụ thể : oject::instanceMethod
+- Tham chiếu đến 1 instance method của 1 đối tượng 

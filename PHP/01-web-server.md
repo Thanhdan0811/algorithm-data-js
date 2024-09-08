@@ -1,0 +1,4 @@
+- Client <=> Server (Hardware) <=> Web server (Apache/ Nginx) Software <=> Find index.php, process PHP.
+- XAMPP / MAMP / WAMP : chứa tất cả trong 1, gồm webserver, database, preconfirgured.
+- Hoặc dùng Docker để set up PHP.
+- XAMPP : ưu điểm không có nhiều phiên bản PHP versions, ko nhiều phiên bản MySQL, không dùng cho production, chỉ hoạt động ở local, 

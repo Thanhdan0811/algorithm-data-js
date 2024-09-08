@@ -1,0 +1,1 @@
+- content_scripts : định nghĩa file tĩnh JS, CSS đươc add vào page mỗi khi page đc mở match với URL.

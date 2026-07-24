@@ -111,7 +111,7 @@ class HeroListComponent {
 - `ngOnChanges` sẽ được gọi ngay khi new component đc tạo, và mỗi khi bound input (@Input()) property changes.
 - hook này sẽ ko chạy nếu change detection ko detect đc bất cứ changes nào.
 
-- Sau đó, hook tiếp theo được gọi là `ngOnInit`, sau khi tạo component và update input properties.
+- Sau đó, hook tiếp **theo** được gọi là `ngOnInit`, sau khi tạo component và update input properties.
 - Chỉ chạy 1 lần duy nhất, Ở hook này có thể access property input.
 - Lưu ý : thời điểm `ngOnInit` được gọi, child component và projected content sẽ không tồn tại ở thời điểm này.
 - DO đó, properties mà ta decorate với @ViewChild, @ViewChilren, @ContentChild, @ContentChildren sẽ ko dùng đc.
@@ -148,6 +148,8 @@ class HeroListComponent {
 - `ngAfterViewChecked` : Được gọi sau khi check và update component's views và child's views.
 - hook này được gọi sau `ngAfterViewInit` và sau mỗi lần change detection cycle.
 - Hook này chỉ dành cho component.
+- Chú ý : nếu mà gọi api ở ngOninit thì `ngAfterViewInit` có thể sẽ không nhận được result vì nó chỉ chạy ở lần đầu tiên.
+- Ở `ngAfterViewChecked` thì có thể nhận được vì nó sẽ chạy mỗi lần có change detection.
 
 - Cuối cùng, `ngOnDestroy` : 
 - Được gọi khi component đc remove khỏi DOM. trước khi remove sẽ gọi.

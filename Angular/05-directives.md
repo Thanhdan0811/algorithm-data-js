@@ -6,12 +6,19 @@
 import { Directive } from '@angular/core';
 
 @Directive({
-  selector: '[highlighted]',
+  selector: '[highlighted]',  // => <course-card highlighted ></course-card>
   standalone: true
 })
 export class HighlightedDirective {
 
   constructor() { }
+
+  @HostBinding("className")
+  get cssClasses() {
+    return "highlighted;
+  }
+  // or, sẽ thêm class vào element khi được khởi tạo.
+  // nó sẽ bind class với "highlighted" , nếu bind không tồn tại sẽ báo lỗi @HostBinding("khongTonTai") => báo lỗi.
 
   @HostBinding("class.highlighted")
   get cssClasses() {
@@ -28,8 +35,8 @@ export class HighlightedDirective {
 
 # Access Host Element.
 
-- @HostBinding decorator.
-- "class.highlighted" : là properties của host element.
+- Dùng @HostBinding decorator để tương tác với host element.
+- "class.highlighted" : là properties của host element, thêm class highlighted.
 
 ```
 
@@ -41,7 +48,7 @@ export class HighlightedDirective {
 ```
 
 # Input in Attribute Directive.
-
+- Nhận Input từ attribute highlighted
 ```
 import { Directive, HostBinding, Input } from '@angular/core';
 
@@ -50,12 +57,14 @@ import { Directive, HostBinding, Input } from '@angular/core';
 })
 export class HighlightedDirective {
 
+
+  // input được nhận vào từ attribute highlighted 
   @Input("highlighted")
   isHighlighted = false;
 
   @HostBinding("class.highlighted")
   get cssClasses() {
-    return this.isHighlighted;
+    return this.isHighlighted; // dựa vào input true/fasle để add/remove highlighted class.
   }
 
   constructor() {
@@ -68,7 +77,7 @@ export class HighlightedDirective {
 
 <!-- app use directive -->
 <course-card
-[highlighted]="true"
+[highlighted]="true"  // truyền value true vào cho directives attribute.
 (courseSelected)="onCourseSelected($event)"
         [course]="course"></course-card>
 
@@ -76,24 +85,31 @@ export class HighlightedDirective {
 
 
 # Set attribute cho host
-
+- set attribute khác cho element sử dụng attribute
 ```
 @HostBinding("attr.disabled")
   get disabled() {
-    return "true";
+    return "true";  // khi true thì set attribute cho element với disabled là true.
 }
 
 ```
 
 
 # Host Listener.
-
+- Lắng nghe sự kiện từ element.
 ```
 <!-- HighlightedDirective -->
 
 @Output()
     toggleHighlight = new EventEmitter();   
 
+
+@HostBinding("class.highlighted")
+  get cssClasses() {
+    return this.isHighlighted; // dựa vào input true/fasle để add/remove highlighted class.
+  }
+
+// khi hover qua thì set là true. sẽ thêm class highlighted
 @HostListener('mouseover', ['$event'])
 mouseOver($event) {
     console.log($event);
@@ -110,6 +126,7 @@ mouseLeave() {
 <!-- app.html -->
 <course-card
         [highlighted]="false"
+        // nhận event từ directive 
         (toggleHighlight)="onToggle($event)"
         (courseSelected)="onCourseSelected($event)"
                 [course]="course">
@@ -136,7 +153,7 @@ onToggle(isHighlighted: Boolean) {
 <!-- Directive file -->
 @Directive({
   selector: '[highlighted]',
-  exportAs: 'hl'
+  exportAs: 'hl'  // export ra như là hl
 })
 export class HighlightedDirective {
 
@@ -151,6 +168,8 @@ export class HighlightedDirective {
     
   }
 
+  // Function toggle này có thể dùng ở ngoài directive bởi component để có thể toggle nó 1 cách chủ động.
+  // Dùng ViewChild
   toggle() {
     this.isHighlighted = !this.isHighlighted;
     this.toggleHighlight.emit(this.isHighlighted);
@@ -168,6 +187,7 @@ export class HighlightedDirective {
 
     <course-image [src]="course.iconUrl"></course-image>
 
+    //////
     <div class="course-description" (dblclick)="highlighter.toggle()"> => dùng hàm trong directive.
         {{ course.longDescription }}
     </div>
@@ -227,13 +247,14 @@ export class NgxUnlessDirective {
 
   visible = false;
 
-  constructor(private templateRef: TemplateRef<any>, 
+  constructor(
+    private templateRef: TemplateRef<any>, 
     private viewContainer: ViewContainerRef
   ) { }
 
   @Input()
   set ngUnless(condition: boolean) {
-    // this.visible để tránh gọi lại nhiều lần.
+    // this.visible để tránh gọi lại nhiều lần do mình ko biêt Framework sẽ gọi lại bao nhiêu lần.
     if(!condition && !this.visible) {
       this.viewContainer.createEmbeddedView(this.templateRef);
       this.visible = true;

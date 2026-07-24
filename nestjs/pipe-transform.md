@@ -1,0 +1,1 @@
+- trong nestjs có 3 nơi có thể dùng pipe : params, controllers, global.

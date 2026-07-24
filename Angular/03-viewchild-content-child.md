@@ -11,6 +11,21 @@ Lấy html tag thay vì Component khi có read: ElementRef.
 ## ViewChild AfterViewInit
 
 - ViewChild only available in AfterViewInit hooks.
+- Nếu thay đổi value, properties mà có display ở html templalte thì sẽ báo lỗi trừ trường hợp ở async actions.
+
+```
+/// trường hợp này ok.
+
+async ngAfterViewInit() {
+    return new Promise((res, rej) => {
+      setTimeout(() => {
+        console.log(this)
+        res(123);
+        this.name = "thanh";
+      }, 0)
+    })
+  }
+```
 
 # ViewChildren
 
@@ -21,10 +36,13 @@ cards: QueryList<CourseCardComponent>;
 @ViewChildren(CourseCardComponent, {read: ElementRef})
 cardsElement: QueryList<ElementRef >;
 
-
-this.cards.changes.subscribe(
-  cards => console.log(cards)
-);
+ngAfterViewInit() {
+  this.cards.changes.subscribe(
+    cards => console.log(cards)
+  );
+  // this.cards.forEach
+  
+}
 
 <!-- có ther dùng methods : first, last, forEach, changes -->
 
@@ -64,6 +82,8 @@ this.cards.changes.subscribe(
 <ng-content select="h3"></ng-content>
 <ng-content select=".h4-select"></ng-content>
 
+
+// bên trong component có html dùng ng-content, là component con.
 @ContentChild("h5Child")
   h5Child: ElementRef;
 
@@ -155,3 +175,18 @@ ngAfterContentInit() {
 
 
 # 
+<select _ngcontent-anj-c21="" class="custom-select card-radius ng-pristine ng-valid ng-touched">
+   <option _ngcontent-anj-c21="" value="0">Loại hình</option>
+   <!---->
+   <option _ngcontent-anj-c21="" value="1">CPA</option>
+   <option _ngcontent-anj-c21="" value="2">CPL</option>
+   <option _ngcontent-anj-c21="" value="3">CPS</option>
+   <option _ngcontent-anj-c21="" value="5">CPI</option>
+   <option _ngcontent-anj-c21="" value="6">CPQL</option>
+   <option _ngcontent-anj-c21="" value="7">CPR</option>
+   <option _ngcontent-anj-c21="" value="8">CPC</option>
+   <option _ngcontent-anj-c21="" value="1000">D2C</option>
+   <option _ngcontent-anj-c21="" value="1001">MIX</option>
+   <option _ngcontent-anj-c21="" value="1001">Hỗn hợp</option>
+</select>
+

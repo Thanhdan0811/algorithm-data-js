@@ -1,2 +1,0 @@
-- computed sẽ ko thay đổi data, mà sẽ dựa vào data mà tính toán trả về giá trị mới.
-- watch sẽ dựa vào data cũ , mới mà tính toán thay đổi giá trị data hiện tại.

@@ -1,0 +1,120 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 100%;
+    max-width: 1800px;
+    margin: 0 auto;
+}
+
+h1 {
+    margin-bottom: 10px;
+}
+
+.relative {
+    position: relative;
+}
+
+.grad {
+    --w-1: 2893;
+    --h-1: 2704;
+    --offset-y: 500;
+    --scale-val: 1;
+    --cal-y-shift: calc((var(--offset-y) / var(--h-1)) * -100%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    aspect-ratio: var(--w-1) / var(--h-1);
+    width: calc(var(--w-1)*1px);
+    /*width: 100%;*/
+}
+
+.grad canvas {
+    display: block;
+    width: 2893px;
+    height: 2704px;
+}
+
+.gradient-1 .grad-1,
+.gradient-1 .grad-2,
+.gradient-1 .grad-3 {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    display: block;
+    --scale-val: 1;
+    transform-origin: top center;
+
+}
+
+.gradient-1 .grad-1 {
+    --w-1: 1384;
+    --h-1: 2165;
+    --bg-color: 22, 29, 55,;
+    /*--offset-y: 1529;*/
+    --offset-y: 0;
+    --cal-y-shift: calc((var(--offset-y) / var(--h-1)) * -100%);
+    transform: translate(-50%, var(--cal-y-shift)) scale(var(--scale-val, 1));
+    width: calc(var(--w-1)*1px);
+    aspect-ratio: 1384 / 2165;
+    background-image: radial-gradient(ellipse 50% 50% at center, rgba(var(--bg-color) 1) 0%,
+    rgba(var(--bg-color) 1) 68%,
+    rgba(var(--bg-color) .7) 82%,
+    rgba(var(--bg-color) .25) 92%,
+    transparent 100%);
+}
+.gradient-1 .grad-2 {
+    --w-1: 2412;
+    --h-1: 3773;
+    --bg-color: 237, 46, 110,;
+    /*--offset-y: 2930;*/
+    --offset-y: 0;
+    --cal-y-shift: calc((var(--offset-y) / var(--h-1)) * -100%);
+    transform: translate(-50%, var(--cal-y-shift)) scale(var(--scale-val, 1));
+    width: calc(var(--w-1)*1px);
+    aspect-ratio: 2412 / 3773;
+    background-image: radial-gradient(ellipse 50% 50% at center, rgba(var(--bg-color) 1) 0%,
+    rgba(var(--bg-color) 1) 68%,
+    rgba(var(--bg-color) .7) 82%,
+    rgba(var(--bg-color) .25) 92%,
+    transparent 100%);
+}
+.gradient-1 .grad-3 {
+    --w-1: 2412;
+    --h-1: 3773;
+    --bg-color: 255, 112, 62,;
+    /*--offset-y: 2751;*/
+    --offset-y: 0;
+    --cal-y-shift: calc((var(--offset-y) / var(--h-1)) * -100%);
+    transform: translate(-50%, var(--cal-y-shift)) scale(var(--scale-val, 1));
+    display: block;
+    width: calc(var(--w-1)*1px);
+    aspect-ratio: 2412 / 3773;
+    background-image: radial-gradient(ellipse 50% 50% at center, rgba(var(--bg-color) 1) 0%,
+    rgba(var(--bg-color) 1) 68%,
+    rgba(var(--bg-color) .7) 82%,
+    rgba(var(--bg-color) .25) 92%,
+    transparent 100%);
+}
+
+
+.gradient-1 {
+    --w-1: 2893;
+    --h-1: 2704;
+    --offset-y: 500;
+    --scale-val: 1;
+    --cal-y-shift: calc((var(--offset-y) / var(--h-1)) * -100%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    aspect-ratio: var(--w-1) / var(--h-1);
+    width: calc(var(--w-1)*1px);
+    /*width: 100%;*/
+    /*overflow: hidden;*/
+    /*transform: translateY(var(--cal-y-shift)) scale(var(--scale-val, 1));*/
+    /*transform-origin: top center;*/
+
+}

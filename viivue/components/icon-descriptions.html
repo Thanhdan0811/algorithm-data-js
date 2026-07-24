@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Icon Description - Component Notes</title>
+    <link rel="stylesheet" href="styles/common.css" />
+  </head>
+  <body>
+    <nav class="note-nav">
+      <a href="index.html">Index</a>
+      <a href="icon-descriptions.html" class="is-active">Icon Description</a>
+      <a href="blog-slider.html">Blog Slider</a>
+      <a href="claude-nectar-note.html">Claude / Nectar</a>
+    </nav>
+
+    <div class="note-page">
+      <h1>Icon Description</h1>
+      <p class="note-subtitle">
+        Note lại issue/lưu ý khi code component này cho WP (VC), check lại
+        trước khi bắt đầu project mới có component tương tự để không lặp lại
+        lỗi cũ.
+      </p>
+
+      <img
+        class="note-ref-img"
+        src="../images/icon-description-labiq.png"
+        alt="Icon description reference - Labiq"
+      />
+
+      <h2>Cấu trúc</h2>
+      <p>
+        3 (hoặc n) item dạng cột, mỗi item gồm: icon (svg), số liệu lớn
+        (number), label mô tả bên dưới. Có border/divider dọc ngăn cách giữa
+        các item, nằm đè lên background image (thường có overlay tối để chữ
+        trắng nổi lên).
+      </p>
+
+      <div class="note-code-label">PHP - VC render (ref)</div>
+      <pre><code>$html = '&lt;div class="vii-icon-descriptions ' . esc_attr($class) . '" style="background-image:url(' . esc_url($bg_image) . ')"&gt;';
+$html .= '&lt;div class="vii-icon-descriptions__overlay"&gt;&lt;/div&gt;';
+$html .= '&lt;div class="vii-icon-descriptions__items"&gt;';
+foreach ($items as $i =&gt; $item) {
+    $is_last = $i === count($items) - 1;
+    $item_class = 'vii-icon-descriptions__item' . ($is_last ? ' is-last' : '');
+
+    $html .= '&lt;div class="' . esc_attr($item_class) . '"&gt;';
+    $html .= '&lt;div class="vii-icon-descriptions__icon" aria-hidden="true"&gt;' . $item['icon'] . '&lt;/div&gt;';
+    $html .= '&lt;div class="vii-icon-descriptions__number"&gt;' . esc_html($item['number']) . '&lt;/div&gt;';
+    $html .= '&lt;div class="vii-icon-descriptions__label"&gt;' . esc_html($item['label']) . '&lt;/div&gt;';
+    $html .= '&lt;/div&gt;';
+}
+$html .= '&lt;/div&gt;'; // items
+$html .= '&lt;/div&gt;'; // vii-icon-descriptions</code></pre>
+
+      <div class="note-code-label">CSS (ref)</div>
+      <pre><code>/*********************************************
+ * Icon Description
+**********************************************/
+.vii-icon-descriptions {
+    position:relative;
+    background-size:cover;
+    background-position:center;
+}
+.vii-icon-descriptions__overlay {
+    position:absolute;inset:0;
+    background:rgba(0,0,0,.45);
+}
+.vii-icon-descriptions__items {
+    position:relative;
+    display:flex;
+}
+.vii-icon-descriptions__item {
+    flex:1 1 0;
+    padding:32px 28px;
+    border-right:1px solid rgba(255,255,255,.3);
+}
+/* chỉ ẩn border item cuối CÙNG HÀNG, không phải cuối list (xem mục Issue bên dưới) */
+.vii-icon-descriptions__item.is-last {
+    border-right:none;
+}
+.vii-icon-descriptions__icon svg { width:48px;height:48px;fill:currentColor; }
+.vii-icon-descriptions__number { font-size:32px;font-weight:700;margin-top:16px; }
+.vii-icon-descriptions__label { color:rgba(255,255,255,.8); }
+
+@media only screen and (max-width:768px) {
+    .vii-icon-descriptions__items { flex-wrap:wrap; }
+    .vii-icon-descriptions__item {
+        flex:1 1 50%;
+        border-right:1px solid rgba(255,255,255,.3);
+        border-bottom:1px solid rgba(255,255,255,.3);
+    }
+    /* item lẻ cuối cùng full width, hết border-right + border-bottom */
+}</code></pre>
+
+      <h2>Flow làm</h2>
+      <ol class="note-flow">
+        <li>
+          Style background image + overlay trước (check overlay đủ tương
+          phản cho chữ trắng, kể cả ảnh sáng màu).
+        </li>
+        <li>
+          Style 1 item: icon (size, màu, check `currentColor` để đổi màu dễ),
+          số liệu lớn, label dưới. Check khoảng cách icon → số → label đều
+          nhau.
+        </li>
+        <li>
+          Style divider giữa các item (border-right), test với 2 items, 3
+          items, 4+ items.
+        </li>
+        <li>
+          Responsive: xác định mobile chia mấy cột (2 cột phổ biến), xử lý
+          lại border khi wrap xuống dòng.
+        </li>
+        <li>
+          Check case không có background image (overlay/màu nền fallback).
+        </li>
+      </ol>
+
+      <h2>Issues / Lưu ý (tránh lặp lại lỗi)</h2>
+
+      <div class="note-callout note-callout--issue">
+        <p><strong>Border/divider cuối hàng khi responsive</strong></p>
+        <ul>
+          <li>
+            Dùng <code>last-child</code> chỉ đúng khi không wrap. Khi mobile
+            chia 2 cột (wrap), item cuối cùng của <strong>mỗi hàng</strong>
+            cũng phải ẩn <code>border-right</code>, không chỉ item cuối
+            list. Dùng <code>nth-child(2n)</code> hoặc CSS
+            <code>:has()</code>/data-attribute thay vì chỉ
+            <code>:last-child</code>.
+          </li>
+          <li>
+            Nếu số lượng item lẻ khi chia cột, item cuối thường full-width →
+            cần custom riêng (vd: nth-last-child(1):nth-child(odd)).
+          </li>
+        </ul>
+      </div>
+
+      <div class="note-callout note-callout--issue">
+        <p><strong>Số liệu (number) không responsive theo container</strong></p>
+        <p>
+          Nếu number dài (vd "100%", "1,000+") mà set
+          <code>font-size</code> cố định dễ vỡ layout ở item hẹp. Nên dùng
+          <code>clamp()</code> hoặc giảm size ở breakpoint nhỏ, và kiểm tra
+          với data dài nhất có thể, không chỉ data trên design.
+        </p>
+      </div>
+
+      <div class="note-callout note-callout--issue">
+        <p><strong>SVG icon không đồng nhất viewBox</strong></p>
+        <p>
+          Icon từ design thường xuất svg với viewBox khác nhau → set cùng
+          width/height nhưng nhìn to nhỏ không đều. Check lại
+          viewBox/padding bên trong từng icon, căn baseline cho đều nhau.
+        </p>
+      </div>
+
+      <div class="note-callout note-callout--warn">
+        <p><strong>Case thiếu item (1-2 item thay vì 3-4)</strong></p>
+        <p>
+          Client có thể chỉ nhập 1-2 item trong VC. Check layout không bị
+          item to bất thường hoặc bị lệch trái/phải, có thể cần class
+          <code>has-2-items</code>/<code>has-single-item</code> tương tự
+          pattern blog slider để custom width khi ít item (xem
+          <a href="blog-slider.html">blog-slider.html</a>).
+        </p>
+      </div>
+
+      <div class="note-callout note-callout--tip">
+        <p><strong>Accessibility</strong></p>
+        <p>
+          Icon trang trí (không mang nghĩa) thì thêm
+          <code>aria-hidden="true"</code>, để số liệu + label là nội dung
+          chính được đọc bởi screen reader.
+        </p>
+      </div>
+
+      <div class="note-callout note-callout--tip">
+        <p><strong>Ảnh nền</strong></p>
+        <p>
+          Nếu background là ảnh thật (không phải màu), dùng
+          <code>ev_get_attachment_image</code> thay vì
+          <code>background-image</code> inline để có lazyload/srcset đúng
+          chuẩn, tránh CLS — xem thêm phần "Ảnh thì thường phải có" trong
+          note chung của Viivue.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

@@ -28,11 +28,17 @@ course = COURSES[0];
   </div>
 </div>
 
+
+// in ra json.
 {{ courses | json }}
 
+
+// cặp key value.
 <div *ngFor="let pair of course | keyvalue">
   {{pair.key + "-" + pair.value}}
 </div>
+
+// slice sẽ lấy từ 0 đến 2 không tính 2.
 @for (course of courses | slice:0:2; track trackCourse; let idx = $index; let count =
   $count; let first = $first; let last = $last; let even = $even; let odd = $odd) {
 

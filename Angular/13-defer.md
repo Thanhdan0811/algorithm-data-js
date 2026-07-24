@@ -1,0 +1,1 @@
+- Load cái cần thiết hay cái cần hiển thị cho user.

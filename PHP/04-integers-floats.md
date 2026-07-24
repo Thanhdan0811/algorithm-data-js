@@ -57,3 +57,12 @@ var_dump((float) $x)
 
 
 ```
+
+# round
+
+
+```
+echo round(3.33, 1) => 3.3
+
+
+```

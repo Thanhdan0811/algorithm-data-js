@@ -11,7 +11,9 @@
   </ng-template>
 
   <!-- định nghĩa 1 instance của template -->
+  // courseName ở trên sẽ tham chiếu đến contest ở đây, context giúp truyền vào biến. courseName là lấy value của description ở context.
   <ng-container *ngTemplateOutlet="blankImage; context: {description: course.description}"></ng-container>
+  // Tạo 1 contexxt khác, khi render ra, thì template sẽ được gán vào với context có description khác nhau.
   <ng-container *ngTemplateOutlet="blankImage; context: {description: course[1].description}"></ng-container>
 
   <hr>
@@ -55,6 +57,7 @@
   <hr>
   <hr>
 
+  //======================================================================================= chỗ này
   <course-card [course]="course" (courseSelected)="onCardClicked($event)" [noImageTemplate]="blankImage">
     <h2>this is content between child tags no select</h2>
     <h3>this is content but only select h3</h3>
@@ -69,7 +72,7 @@
 -  [noImageTemplate]="blankImage" : truyền template blankImage xuống component con.
 
 <!-- componnent con course.component -->
-
+- định nghĩa template ở component cha, sau đó truyền xuống cho component con, component con dùng *ngTemplateOutlet để nhận. 
 ```
 <!-- trong file ts -->
 @Input()

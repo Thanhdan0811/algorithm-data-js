@@ -1,5 +1,4 @@
-
-
+- Cách in array ra ngoài : `var_dump($arr)`;
 
 ```
 // $ls = array('PHP', 'JAVA, 'PYTHON'); // cách cũ
@@ -21,7 +20,7 @@ echo count($ls); // trả về length của array.
 // push vào end của array.
 ls[] = "C++"; // sẽ tự động thêm vào cuối array.
 
-// hoặc dùng 
+// hoặc dùng
 array_push($ls, 'C++', 'C#');
 
 // Custom key trong array
@@ -53,7 +52,7 @@ unset($arr[2], $arr[5]);
 // Nếu dùng unset thì index sẽ ko bị đánh dấu lại.
 
 
-// ép kiểu array 
+// ép kiểu array
 
 $x = 1;
 var_dump((array) $x); // chuyển $x trở thành phần tử đầu của array.
@@ -61,9 +60,10 @@ var_dump((array) $x); // chuyển $x trở thành phần tử đầu của array
 // check xem key có tồn tại không.
 
 var_dump(array_key_exists('a', $arr));
+var_dump(in_array('b', $arr));
 
 // điểm khác biệt với isset() là isset() sẽ check có tồn tại và không null
-// arrray_key_exists sẽ check có tồn tại và giá trị có thể là null.
+// array_key_exists sẽ check có tồn tại và giá trị có thể là null.
 
 
 

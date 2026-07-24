@@ -6,6 +6,7 @@
 - Ta phải dùng đến : :host {}
 
 ```
+// css file của course-card
 couse-card {display: block;} => sẽ không hoạt động.
 
 <!-- file css course card component -->
@@ -24,6 +25,8 @@ couse-card {display: block;} => sẽ không hoạt động.
 - Ta sẽ dùng => ::ng-deep
 
 ```
+
+// file css của 
 .course-card ::ng-deep .course-description {
     style....
 }

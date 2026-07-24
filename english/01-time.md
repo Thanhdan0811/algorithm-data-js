@@ -1,0 +1,7 @@
+- hour hand
+- minute hand
+- 12 noon or 12 midnight
+- 2:05 => two O five.
+- 2:10 => two ten.
+- 2:15 => two fifteen.
+- 

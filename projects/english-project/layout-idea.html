@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Layout Idea – BigFootEnglish</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      *, *::before, *::after { box-sizing: border-box; }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
+      }
+
+      /* ── Wireframe labels ─────────────────── */
+      .wf-label {
+        font-size: 0.65rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: #94a3b8;
+        margin-bottom: 0.5rem;
+      }
+
+      /* ── Shimmer placeholder bars ─────────── */
+      .bar {
+        height: 0.55rem;
+        background: #e2e8f0;
+        border-radius: 9999px;
+        margin-bottom: 0.45rem;
+      }
+      .bar.short { width: 55%; }
+      .bar.medium { width: 75%; }
+      .bar.long { width: 90%; }
+      .bar.full { width: 100%; }
+
+      /* ── Nav item ─────────────────────────── */
+      .nav-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.45rem 0.6rem;
+        border-radius: 0.4rem;
+        font-size: 0.8rem;
+        font-weight: 500;
+        color: #64748b;
+        cursor: default;
+        transition: background 0.1s;
+      }
+      .nav-item:hover { background: #f1f5f9; color: #1e293b; }
+      .nav-item.active {
+        background: #eff6ff;
+        color: #1d4ed8;
+        font-weight: 600;
+      }
+      .nav-item .dot {
+        width: 0.45rem;
+        height: 0.45rem;
+        border-radius: 50%;
+        background: currentColor;
+        flex-shrink: 0;
+        opacity: 0.6;
+      }
+      .nav-section {
+        font-size: 0.62rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: #94a3b8;
+        padding: 0.9rem 0.6rem 0.3rem;
+      }
+
+      /* ── Card ─────────────────────────────── */
+      .content-card {
+        background: white;
+        border-radius: 0.6rem;
+        border: 1px solid #e8ecf0;
+        padding: 1rem 1.1rem;
+        margin-bottom: 0.7rem;
+      }
+      .content-card .card-tag {
+        display: inline-block;
+        font-size: 0.65rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        background: #eff6ff;
+        color: #1d4ed8;
+        padding: 0.15rem 0.5rem;
+        border-radius: 4px;
+        margin-bottom: 0.5rem;
+      }
+
+      /* ── Top bar ──────────────────────────── */
+      .topbar {
+        background: white;
+        border-bottom: 1px solid #e2e8f0;
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        padding: 0 1.25rem;
+        gap: 0.75rem;
+      }
+      .topbar .logo {
+        font-size: 0.9rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, #4f46e5, #7c3aed);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        letter-spacing: -0.03em;
+      }
+      .topbar .search-bar {
+        flex: 1;
+        max-width: 280px;
+        height: 1.75rem;
+        background: #f1f5f9;
+        border-radius: 9999px;
+        display: flex;
+        align-items: center;
+        padding: 0 0.75rem;
+        gap: 0.4rem;
+        font-size: 0.75rem;
+        color: #94a3b8;
+      }
+      .topbar .avatar {
+        width: 1.75rem;
+        height: 1.75rem;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #6366f1, #8b5cf6);
+        margin-left: auto;
+      }
+    </style>
+  </head>
+  <body class="bg-slate-100 min-h-screen p-6">
+
+    <div class="max-w-5xl mx-auto">
+
+      <!-- Title -->
+      <div class="mb-5">
+        <p class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-1">Layout Concept</p>
+        <h1 class="text-xl font-extrabold text-slate-800 tracking-tight">BigFootEnglish – App Layout</h1>
+        <p class="text-sm text-slate-500 mt-1">30% sidebar · 70% content — annotated wireframe</p>
+      </div>
+
+      <!-- Wireframe shell -->
+      <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm">
+
+        <!-- Top bar -->
+        <div class="topbar">
+          <span class="logo">BigFootEnglish</span>
+          <div class="search-bar">
+            <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="7" cy="7" r="5"/><path d="m11 11 3 3"/>
+            </svg>
+            Search words, topics...
+          </div>
+          <div style="display:flex;gap:0.4rem;align-items:center;">
+            <div style="width:1.75rem;height:1.75rem;border-radius:0.35rem;background:#f1f5f9;"></div>
+            <div class="avatar"></div>
+          </div>
+        </div>
+
+        <!-- Body -->
+        <div style="display:flex;min-height:520px;">
+
+          <!-- Sidebar (30%) -->
+          <aside style="width:30%;border-right:1px solid #e8ecf0;background:#fafbfc;padding:0.75rem 0.6rem;flex-shrink:0;">
+            <div class="wf-label" style="padding:0 0.6rem 0.3rem;">Navigation</div>
+
+            <div class="nav-section">Learn</div>
+            <div class="nav-item active"><span class="dot"></span>Vocabulary</div>
+            <div class="nav-item"><span class="dot"></span>Grammar</div>
+            <div class="nav-item"><span class="dot"></span>Phrasal Verbs</div>
+            <div class="nav-item"><span class="dot"></span>Idioms</div>
+
+            <div class="nav-section">Practice</div>
+            <div class="nav-item"><span class="dot"></span>Flashcards</div>
+            <div class="nav-item"><span class="dot"></span>Quiz</div>
+            <div class="nav-item"><span class="dot"></span>Mock Tests</div>
+
+            <div class="nav-section">Exams</div>
+            <div class="nav-item"><span class="dot"></span>TOEIC</div>
+            <div class="nav-item"><span class="dot"></span>IELTS</div>
+
+            <div class="nav-section">Account</div>
+            <div class="nav-item"><span class="dot"></span>Dashboard</div>
+            <div class="nav-item"><span class="dot"></span>Progress</div>
+            <div class="nav-item"><span class="dot"></span>Subscription</div>
+
+            <!-- Progress indicator at bottom -->
+            <div style="margin-top:auto;padding:1rem 0.6rem 0.4rem;">
+              <div class="wf-label">Daily streak</div>
+              <div style="background:#f1f5f9;border-radius:9999px;height:0.5rem;overflow:hidden;">
+                <div style="width:62%;height:100%;background:linear-gradient(90deg,#6366f1,#8b5cf6);border-radius:9999px;"></div>
+              </div>
+              <p style="font-size:0.72rem;color:#94a3b8;margin-top:0.3rem;">5 / 8 words today</p>
+            </div>
+          </aside>
+
+          <!-- Main content (70%) -->
+          <main style="flex:1;padding:1.25rem;overflow:auto;">
+            <div class="wf-label">Main Content Area</div>
+
+            <!-- Page heading area -->
+            <div style="margin-bottom:1rem;">
+              <div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:0.75rem;">
+                <div style="height:1.5rem;width:11rem;background:#1e293b;border-radius:0.35rem;"></div>
+                <div style="height:1.25rem;width:4rem;background:#eff6ff;border-radius:9999px;"></div>
+              </div>
+              <div class="bar long"></div>
+              <div class="bar medium"></div>
+            </div>
+
+            <!-- Word cards row -->
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.65rem;margin-bottom:0.9rem;">
+              <div class="content-card">
+                <div class="card-tag">noun</div>
+                <div style="height:1rem;background:#1e293b;border-radius:0.3rem;margin-bottom:0.4rem;width:70%;"></div>
+                <div class="bar medium"></div>
+                <div class="bar short"></div>
+              </div>
+              <div class="content-card">
+                <div class="card-tag">verb</div>
+                <div style="height:1rem;background:#1e293b;border-radius:0.3rem;margin-bottom:0.4rem;width:60%;"></div>
+                <div class="bar long"></div>
+                <div class="bar medium"></div>
+              </div>
+              <div class="content-card">
+                <div class="card-tag">adj</div>
+                <div style="height:1rem;background:#1e293b;border-radius:0.3rem;margin-bottom:0.4rem;width:55%;"></div>
+                <div class="bar medium"></div>
+                <div class="bar short"></div>
+              </div>
+            </div>
+
+            <!-- Long content card -->
+            <div class="content-card" style="margin-bottom:0.7rem;">
+              <div class="wf-label">Example sentence</div>
+              <div class="bar full"></div>
+              <div class="bar long"></div>
+              <div class="bar medium"></div>
+            </div>
+
+            <!-- Two-col section -->
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.65rem;">
+              <div class="content-card">
+                <div class="wf-label">Related words</div>
+                <div class="bar short"></div>
+                <div class="bar medium"></div>
+                <div class="bar short"></div>
+                <div class="bar medium"></div>
+              </div>
+              <div class="content-card">
+                <div class="wf-label">Pronunciation</div>
+                <div style="height:2.5rem;background:#f8fafc;border-radius:0.4rem;border:1px solid #e2e8f0;display:flex;align-items:center;justify-content:center;gap:0.4rem;">
+                  <div style="width:1.5rem;height:1.5rem;border-radius:50%;background:linear-gradient(135deg,#6366f1,#8b5cf6);"></div>
+                  <div style="height:0.35rem;flex:1;background:#e2e8f0;border-radius:9999px;">
+                    <div style="width:40%;height:100%;background:#6366f1;border-radius:9999px;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </main>
+
+          <!-- Right panel (optional TOC) -->
+          <aside style="width:180px;border-left:1px solid #e8ecf0;background:#fafbfc;padding:0.75rem 0.8rem;flex-shrink:0;">
+            <div class="wf-label">On this page</div>
+            <div style="display:flex;flex-direction:column;gap:0.35rem;">
+              <div style="height:0.45rem;background:#6366f1;border-radius:9999px;width:80%;"></div>
+              <div class="bar medium" style="margin:0;"></div>
+              <div class="bar short" style="margin:0;"></div>
+              <div class="bar medium" style="margin:0;"></div>
+              <div class="bar short" style="margin:0;"></div>
+              <div class="bar long" style="margin:0;"></div>
+            </div>
+
+            <div class="wf-label" style="margin-top:1.25rem;">Quick actions</div>
+            <div style="display:flex;flex-direction:column;gap:0.35rem;">
+              <div style="background:#f1f5f9;border-radius:0.35rem;padding:0.35rem 0.6rem;font-size:0.72rem;color:#475569;text-align:center;">Save word</div>
+              <div style="background:#eff6ff;border-radius:0.35rem;padding:0.35rem 0.6rem;font-size:0.72rem;color:#1d4ed8;text-align:center;font-weight:600;">Add to deck</div>
+            </div>
+          </aside>
+
+        </div>
+      </div>
+
+      <!-- Annotations -->
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.65rem;margin-top:1rem;">
+        <div style="background:white;border-radius:0.6rem;border:1px solid #e8ecf0;padding:0.9rem 1rem;font-size:0.8rem;">
+          <div style="font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#6366f1;margin-bottom:0.35rem;">Sidebar · 30%</div>
+          <p style="color:#475569;line-height:1.5;">Menu, categories, options, progress indicator. Collapses to icons on mobile.</p>
+        </div>
+        <div style="background:white;border-radius:0.6rem;border:1px solid #e8ecf0;padding:0.9rem 1rem;font-size:0.8rem;">
+          <div style="font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#10b981;margin-bottom:0.35rem;">Main content · 70%</div>
+          <p style="color:#475569;line-height:1.5;">Word cards, examples, audio player, grammar lessons. Primary reading area.</p>
+        </div>
+        <div style="background:white;border-radius:0.6rem;border:1px solid #e8ecf0;padding:0.9rem 1rem;font-size:0.8rem;">
+          <div style="font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#f59e0b;margin-bottom:0.35rem;">Right panel · optional</div>
+          <p style="color:#475569;line-height:1.5;">TOC, quick actions. Hidden on smaller screens.</p>
+        </div>
+      </div>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,98 @@
+/* CSS styles */
+body {
+  background-color: lightblue;
+}
+.btn_primary {
+  background-color: red;
+  border: none;
+  min-height: 56px;
+  outline: none;
+  position: relative;
+  padding: 6px 20px 6px 16px;
+  min-width: 216px;
+  text-align: left;
+  font-size: 16px;
+  color: white;
+  /* border-radius:8px; */
+  /* overflow:hidden; */
+}
+@property --r {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 8px;
+}
+@property --x {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 20%;
+}
+@property --y {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 50%;
+}
+.shape {
+  --r: 8px;
+  --s: 8px;
+  --x: 20%;
+  --y: 50%;
+  --_m: /calc(2 * var(--r)) calc(2 * var(--r))
+    radial-gradient(#000 70%, #0000 72%) no-repeat;
+  mask:
+    left 0 top 0 var(--_m),
+    left 100% var(--_m),
+    right 100% var(--_m),
+    right calc(var(--x) / 1) top 0px var(--_m),
+    right 0px top calc(var(--y) / 1) var(--_m),
+    conic-gradient(from 0.75turn at var(--r) var(--r), #0000 25%, #000 0) 0px
+      0px / calc(100% - var(--x)) calc(100% - var(--y)) no-repeat,
+    conic-gradient(
+        from 0.5turn at var(--r) calc(100% - var(--r)),
+        #0000 25%,
+        #000 0
+      )
+      0px calc(100% - 0px) / calc(100% - var(--x)) calc(100% - var(--y))
+      no-repeat,
+    conic-gradient(
+        from 0.25turn at calc(100% - var(--r)) calc(100% - var(--r)),
+        #0000 25%,
+        #000 0
+      )
+      100% calc(100% - 0px) / calc(100% - var(--x)) calc(100% - var(--y))
+      no-repeat,
+    linear-gradient(to bottom left, #0000 49.2%, #000 50%) top right / var(--x)
+      var(--y) no-repeat;
+}
+
+.box {
+  width: 300px;
+  height: 300px;
+  background-color: green;
+
+  --r: 16px; /* the radius */
+  --s: 4px; /* the size of the cut */
+  --x: 40%;
+
+  --_m: /calc(2 * var(--r)) calc(2 * var(--r))
+    radial-gradient(#000 70%, #0000 72%) no-repeat;
+  mask:
+    left 0 top 0 var(--_m),
+    left 100% var(--_m),
+    right 100% var(--_m),
+    right calc(var(--x) / 1) top 0px var(--_m),
+    right 0px top calc(var(--x) / 1) var(--_m),
+    conic-gradient(from 0.75turn at 16px 16px, #0000 25%, #000 0) 0px 0px /
+      calc(100% - var(--x)) calc(100% - var(--x)) no-repeat,
+    conic-gradient(from 0.5turn at 16px calc(100% - 16px), #0000 25%, #000 0)
+      0px calc(100% - 0px) / calc(100% - var(--x)) calc(100% - var(--x))
+      no-repeat,
+    conic-gradient(
+        from 0.25turn at calc(100% - 16px) calc(100% - 16px),
+        #0000 25%,
+        #000 0
+      )
+      100% calc(100% - 0px) / calc(100% - var(--x)) calc(100% - var(--x))
+      no-repeat,
+    linear-gradient(-135deg, #0000 19%, #000 19%) 60% 21% / calc(100% - 16px)
+      calc(100% - 16px) no-repeat;
+}

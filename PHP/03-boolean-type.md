@@ -18,5 +18,12 @@ $isComplete = true; // TRUE đểu đc.
 // is_bool() trả về true, false.
 
 
+// so sánh 
+// === và !== 
+$age = 30;
+var_dump($age === 30);
+var_dump($age === "30");
+
+// dùng xor ngược lại với or.
 
 ```
